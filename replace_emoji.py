@@ -3,6 +3,8 @@ import hashlib
 import csv
 import unicodedata
 
+DEBUG = True
+
 EMOJI_NAMES = list(c['Name'] for c in
                    csv.DictReader(
                        open('./full-emoji-list.tsv'), delimiter='\t')
@@ -69,32 +71,36 @@ def is_emoji(c):
 
 def replace_names(token_list):
     for t in token_list:
-        if t.type == tokenize.NAME:
-            if any(map(is_emoji, t.string)):
-                yield tokenize.TokenInfo(
-                    type=t.type,
-                    string='_' +
-                    hashlib.md5(t.string.encode('utf-8')).hexdigest(),
-                    start=t.start,
-                    end=t.end,
-                    line=t.line
-                )
-            break
-        yield t
+        if t.type in (tokenize.ERRORTOKEN, tokenize.NAME) and any(map(is_emoji, t.string)):
+            # If it's a variable(?) name
+            yield tokenize.TokenInfo(
+                type=t.type,
+                string='_' +
+                hashlib.md5(t.string.encode('utf-8')).hexdigest(),
+                start=t.start,
+                end=t.end,
+                line=t.line
+            )
+        else:
+            yield t
 
 
 def replace_emoji(token_list):
     token_list = replace_keywords(token_list)
     token_list = replace_names(token_list)
-    return list(token_list)
+    token_list = list(token_list)
+    if DEBUG:
+        for token in token_list:
+            print(token)
+    return token_list
 
 
-token_list = [
-    tokenize.TokenInfo(
-        type=tokenize.AT, string='@', start=None, end=None, line=None),
-    tokenize.TokenInfo(
-        type=tokenize.OP, string='⭐', start=None, end=None, line=None),
-    tokenize.TokenInfo(
-        type=tokenize.NAME, string='bar🍫', start=None, end=None, line=None),
-]
-replace_emoji(token_list)
+#  token_list = [
+#      tokenize.TokenInfo(
+#          type=tokenize.AT, string='@', start=None, end=None, line=None),
+#      tokenize.TokenInfo(
+#          type=tokenize.OP, string='⭐', start=None, end=None, line=None),
+#      tokenize.TokenInfo(
+#          type=tokenize.NAME, string='bar🍫', start=None, end=None, line=None),
+#  ]
+#  replace_emoji(token_list)
