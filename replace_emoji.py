@@ -56,6 +56,8 @@ REPLACEMENTS = {
 REVERSE_REPLACEMENTS = {
     (bool, 'True') : '👍',
     (bool, 'False') : '👎',
+    (int, '0'): '0️⃣', 
+    (int, '100'): '💯', 
 }
 
 
@@ -105,11 +107,17 @@ def replace_emoji(token_list):
     return token_list
 
 
-def output_formatter(arg):
-    if (type(arg), str(arg)) in REVERSE_REPLACEMENTS:
-        return REVERSE_REPLACEMENTS[(type(arg), str(arg))]
+def output_formatter(arg, p = None, cycle=None):
+    if p:
+        if (type(arg), str(arg)) in REVERSE_REPLACEMENTS:
+            return p.text(REVERSE_REPLACEMENTS[(type(arg), str(arg))])
+        else:
+            return p.text(str(arg))
     else:
-        return str(arg)
+        if (type(arg), str(arg)) in REVERSE_REPLACEMENTS:
+            return REVERSE_REPLACEMENTS[(type(arg), str(arg))]
+        else:
+            return str(arg)
 
 #  token_list = [
 #      tokenize.TokenInfo(

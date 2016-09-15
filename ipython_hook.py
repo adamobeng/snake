@@ -13,8 +13,9 @@ def load_ipython_extension(ip):
     ip.input_splitter.python_line_transforms.append(emoji_transformer())
     ip.input_transformer_manager.python_line_transforms.append(emoji_transformer())
 
-    ip.display_formatter.formatters['text/plain'].for_type(bool, output_formatter)
-    ip.display_formatter.formatters['text/html'].for_type(bool, output_formatter)
+    for _type  in (bool, int):
+        ip.display_formatter.formatters['text/plain'].for_type(_type, output_formatter)
+        ip.display_formatter.formatters['text/html'].for_type(_type, output_formatter)
 
     ip.set_hook('pre_prompt_hook', lambda x: print('🐍>>>'))
 
