@@ -3,7 +3,7 @@ import hashlib
 import csv
 import unicodedata
 
-DEBUG = True
+DEBUG = False
 
 EMOJI_NAMES = list(c['Name'] for c in
                    csv.DictReader(
@@ -31,23 +31,31 @@ EMOJI_NAMES = list(c['Name'] for c in
 #  or
 #  raise
 #  return
-#  try
 #  while
 #  with
 
 REPLACEMENTS = {
-    (tokenize.OP,   '⭐'): '*',
-    (tokenize.NAME, '❔'): 'if',
-    (tokenize.NAME, '❔⏩'): 'pass',
-    (tokenize.NAME, '❔🌍'): 'global',
-    (tokenize.NAME, '❔💔'): 'break',
-    (tokenize.NAME, '❔👍'): 'True',
-    (tokenize.NAME, '❔👎'): 'False',
-    (tokenize.NAME, '🇫🇷'): 'yield',
-    (tokenize.NAME, '🚫'): 'not',
-    (tokenize.NAME, '🐑'): 'lambda',
-    (tokenize.NAME, '🏫'): 'class',
-    (tokenize.NAME, '📥'): 'import',
+    (tokenize.ERRORTOKEN,   '⭐'): '*',
+    (tokenize.ERRORTOKEN, '❔'): 'if',
+    (tokenize.ERRORTOKEN, '⏩'): 'pass',
+    (tokenize.ERRORTOKEN, '🌍'): 'global',
+    (tokenize.ERRORTOKEN, '💔'): 'break',
+    (tokenize.ERRORTOKEN, '👍'): 'True',
+    (tokenize.ERRORTOKEN, '👎'): 'False',
+    (tokenize.ERRORTOKEN, '🇫🇷'): 'yield',
+    (tokenize.ERRORTOKEN, '🚫'): 'None',
+    (tokenize.ERRORTOKEN, '🐑'): 'lambda',
+    (tokenize.ERRORTOKEN, '🏫'): 'class',
+    (tokenize.ERRORTOKEN, '📥'): 'import',
+    (tokenize.ERRORTOKEN, '✌'): 'try',
+    (tokenize.ERRORTOKEN, '🎀'): 'not',
+
+    (tokenize.ERRORTOKEN, '🖨'): 'print', (tokenize.ERRORTOKEN, '📠'): 'print',
+}
+
+REVERSE_REPLACEMENTS = {
+    (bool, 'True') : '👍',
+    (bool, 'False') : '👎',
 }
 
 
@@ -70,9 +78,11 @@ def is_emoji(c):
 
 
 def replace_names(token_list):
+    '''
+    Replace variable names which contain an emoji with the hash of the string
+    '''
     for t in token_list:
         if t.type in (tokenize.ERRORTOKEN, tokenize.NAME) and any(map(is_emoji, t.string)):
-            # If it's a variable(?) name
             yield tokenize.TokenInfo(
                 type=t.type,
                 string='_' +
@@ -94,6 +104,12 @@ def replace_emoji(token_list):
             print(token)
     return token_list
 
+
+def output_formatter(arg):
+    if (type(arg), str(arg)) in REVERSE_REPLACEMENTS:
+        return REVERSE_REPLACEMENTS[(type(arg), str(arg))]
+    else:
+        return str(arg)
 
 #  token_list = [
 #      tokenize.TokenInfo(
