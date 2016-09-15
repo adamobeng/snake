@@ -26,4 +26,4 @@ EMOJITODICT = {
 }
 
 
-DICTTOEMOJI = dict((item, key) for key, item in EMOJITODICT)
+DICTTOEMOJI = dict((item, key) for key, item in EMOJITODICT.items())
