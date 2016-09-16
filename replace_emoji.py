@@ -12,29 +12,6 @@ EMOJI_NAMES = list(c['Name'] for c in
                    )
 
 
-#  None
-#  and
-#  as
-#  assert
-#  continue
-#  def
-#  del
-#  elif
-#  else
-#  except
-#  finally
-#  for
-#  from
-#  in
-#  is
-#  nonlocal
-#  not
-#  or
-#  raise
-#  return
-#  while
-#  with
-
 REPLACEMENTS = EmojiMapper()
 
 
