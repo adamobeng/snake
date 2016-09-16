@@ -1,5 +1,31 @@
+import types
 import tokenize
 from collections import namedtuple
+
+
+# Keywords to Replace
+#  None
+#  and
+#  as
+#  assert
+#  continue
+#  def
+#  del
+#  elif
+#  else
+#  except
+#  finally
+#  for
+#  from
+#  in
+#  is
+#  nonlocal
+#  not
+#  or
+#  raise
+#  return
+#  while
+#  with
 
 
 EmojiRep = namedtuple('EmojiReplacement', ['type', 'val'])
@@ -21,7 +47,7 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '✌'), EmojiRep(None, 'try')),
     (EmojiRep(tokenize.ERRORTOKEN, '🎀'), EmojiRep(None, 'not')),
 
-    (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(None, 'print')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(types.BuiltinFunctionType, 'print')),
 
     (EmojiRep(tokenize.ERRORTOKEN, '⬅'), EmojiRep(None, '=')),
     (EmojiRep(tokenize.ERRORTOKEN, '◀'), EmojiRep(None, '=')),
