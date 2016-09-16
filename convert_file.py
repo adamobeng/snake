@@ -1,5 +1,4 @@
-
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import tokenize
 from replace_emoji import replace_emoji
