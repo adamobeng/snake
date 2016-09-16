@@ -8,6 +8,7 @@ from sys import argv
 def parse_file (f):
     lines = list()
     lines = replace_emoji(tokenize.tokenize(f.readline))
+    print(type(lines[1]))
     untokenize = tokenize.untokenize(lines)
 
     return untokenize
