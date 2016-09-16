@@ -5,7 +5,7 @@ from collections import namedtuple
 EmojiRep = namedtuple('EmojiReplacement', ['type', 'val'])
 
 
-REPLACEMENTS = [
+REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '⭐'), EmojiRep(None, '*')),
     (EmojiRep(tokenize.ERRORTOKEN, '❔'), EmojiRep(None, 'if')),
     (EmojiRep(tokenize.ERRORTOKEN, '⏩'), EmojiRep(None, 'pass')),
@@ -22,14 +22,17 @@ REPLACEMENTS = [
     (EmojiRep(tokenize.ERRORTOKEN, '🎀'), EmojiRep(None, 'not')),
 
     (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(None, 'print')),
+
+    (EmojiRep(tokenize.ERRORTOKEN, '⬅'), EmojiRep(None, '=')),
+    (EmojiRep(tokenize.ERRORTOKEN, '◀'), EmojiRep(None, '=')),
 ]
 
 
 class EmojiMapper:
 
-    emojitopython = dict((key.val, item.val) for key, item in REPLACEMENTS)
-    tupletoemoji = dict((item, key.val) for key, item in REPLACEMENTS)
-    pythontoemoji = dict((item.val, key.val) for key, item in REPLACEMENTS)
+    emojitopython = dict((key.val, item.val) for key, item in REPLACEMENTS_DATA)
+    tupletoemoji = dict((key, item.val) for key, item in REPLACEMENTS_DATA)
+    pythontoemoji = dict((item.val, key.val) for key, item in REPLACEMENTS_DATA)
 
     def __getitem__(self, item):
         # For treating an instance like a dict
@@ -50,7 +53,6 @@ class EmojiMapper:
                 return True
             else:
                 return False
-
         else:
             if item in self.emojitopython.keys() or item in self.pythontoemoji.keys():
                 return True
