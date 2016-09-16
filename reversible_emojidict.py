@@ -46,6 +46,8 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '📥'), EmojiRep(None, 'import')),
     (EmojiRep(tokenize.ERRORTOKEN, '✌'), EmojiRep(None, 'try')),
     (EmojiRep(tokenize.ERRORTOKEN, '🎀'), EmojiRep(None, 'not')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🍀'), EmojiRep(None, 'for')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🔤'), EmojiRep(None, 'str')),
 
     (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(types.BuiltinFunctionType, 'print')),
 
