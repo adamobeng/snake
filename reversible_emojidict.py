@@ -1,3 +1,4 @@
+import types
 import tokenize
 from collections import namedtuple
 
@@ -43,11 +44,14 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '🐑'), EmojiRep(None, 'lambda')),
     (EmojiRep(tokenize.ERRORTOKEN, '🏫'), EmojiRep(None, 'class')),
     (EmojiRep(tokenize.ERRORTOKEN, '📥'), EmojiRep(None, 'import')),
-    (EmojiRep(tokenize.ERRORTOKEN, '✌'), EmojiRep(None, 'try')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🙏'), EmojiRep(None, 'try')),
     (EmojiRep(tokenize.ERRORTOKEN, '🎀'), EmojiRep(None, 'not')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🍀'), EmojiRep(None, 'for')),
+    (EmojiRep(tokenize.ERRORTOKEN, '👩‍👩‍👧‍👦'), EmojiRep(type, 'set')),
+    (EmojiRep(tokenize.ERRORTOKEN, '👇'), EmojiRep(None, 'in')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🤘'), EmojiRep(None, 'finally')),
 
     (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(type(print), 'print')),
-
     (EmojiRep(tokenize.ERRORTOKEN, '⬅'), EmojiRep(None, '=')),
     (EmojiRep(tokenize.ERRORTOKEN, '◀'), EmojiRep(None, '=')),
 ]
