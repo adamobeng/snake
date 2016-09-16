@@ -7,7 +7,12 @@ import argparse
 from sys import argv
 import python_to_emoji
 
-f = open(argv[1], 'rb')
+try:
+    f = open(argv[1], 'rb')
+except IndexError:
+    print("Please enter a file to convert")
+    exit()
+
 tokens = tokenize.tokenize(f.readline)
 emojified = python_to_emoji.replace_text(tokens)
 
