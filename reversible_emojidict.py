@@ -31,14 +31,18 @@ REPLACEMENTS_DATA = [
 class EmojiMapper:
 
     emojitopython = dict((key.val, item.val) for key, item in REPLACEMENTS_DATA)
-    tupletoemoji = dict((key, item.val) for key, item in REPLACEMENTS_DATA)
+    tupletoemoji = dict((item, key.val) for key, item in REPLACEMENTS_DATA)
+    tupletopython = dict((key, item.val) for key, item in REPLACEMENTS_DATA)
     pythontoemoji = dict((item.val, key.val) for key, item in REPLACEMENTS_DATA)
 
     def __getitem__(self, item):
         # For treating an instance like a dict
         if isinstance(item, tuple):
             # If tuple convert to our namedtuple and pass
-            return self.tupletoemoji[EmojiRep(*item)]
+            try:
+                return self.tupletoemoji[EmojiRep(*item)]
+            except KeyError:
+                return self.tupletopython[EmojiRep(*item)]
         else:
             # Otherwise attempt to read from both dicts
             try:
@@ -49,7 +53,7 @@ class EmojiMapper:
     def __contains__(self, item):
         # Same as getitem essentially
         if isinstance(item, tuple):
-            if EmojiRep(*item) in self.tupletoemoji.keys():
+            if EmojiRep(*item) in self.tupletoemoji.keys() or EmojiRep(*item) in self.tupletopython.keys():
                 return True
             else:
                 return False
