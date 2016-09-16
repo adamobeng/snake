@@ -5,32 +5,31 @@ from collections import namedtuple
 EmojiRep = namedtuple('EmojiReplacement', ['type', 'val'])
 
 
-# This could be replaced by a list of tuples
-REPLACEMENTS = {
-        EmojiRep(tokenize.ERRORTOKEN, '⭐'): EmojiRep(None, '*'),
-        EmojiRep(tokenize.ERRORTOKEN, '❔'): EmojiRep(None, 'if'),
-        EmojiRep(tokenize.ERRORTOKEN, '⏩'): EmojiRep(None, 'pass'),
-        EmojiRep(tokenize.ERRORTOKEN, '🌍'): EmojiRep(None, 'global'),
-        EmojiRep(tokenize.ERRORTOKEN, '💔'): EmojiRep(None, 'break'),
-        EmojiRep(tokenize.ERRORTOKEN, '👍'): EmojiRep(bool, 'True'),
-        EmojiRep(tokenize.ERRORTOKEN, '👎'): EmojiRep(bool, 'False'),
-        EmojiRep(tokenize.ERRORTOKEN, '🇫🇷'): EmojiRep(None, 'yield'),
-        EmojiRep(tokenize.ERRORTOKEN, '🚫'): EmojiRep(None, 'None'),
-        EmojiRep(tokenize.ERRORTOKEN, '🐑'): EmojiRep(None, 'lambda'),
-        EmojiRep(tokenize.ERRORTOKEN, '🏫'): EmojiRep(None, 'class'),
-        EmojiRep(tokenize.ERRORTOKEN, '📥'): EmojiRep(None, 'import'),
-        EmojiRep(tokenize.ERRORTOKEN, '✌'): EmojiRep(None, 'try'),
-        EmojiRep(tokenize.ERRORTOKEN, '🎀'): EmojiRep(None, 'not'),
+REPLACEMENTS = [
+    (EmojiRep(tokenize.ERRORTOKEN, '⭐'), EmojiRep(None, '*')),
+    (EmojiRep(tokenize.ERRORTOKEN, '❔'), EmojiRep(None, 'if')),
+    (EmojiRep(tokenize.ERRORTOKEN, '⏩'), EmojiRep(None, 'pass')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🌍'), EmojiRep(None, 'global')),
+    (EmojiRep(tokenize.ERRORTOKEN, '💔'), EmojiRep(None, 'break')),
+    (EmojiRep(tokenize.ERRORTOKEN, '👍'), EmojiRep(bool, 'True')),
+    (EmojiRep(tokenize.ERRORTOKEN, '👎'), EmojiRep(bool, 'False')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🇫🇷'), EmojiRep(None, 'yield')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🚫'), EmojiRep(None, 'None')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🐑'), EmojiRep(None, 'lambda')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🏫'), EmojiRep(None, 'class')),
+    (EmojiRep(tokenize.ERRORTOKEN, '📥'), EmojiRep(None, 'import')),
+    (EmojiRep(tokenize.ERRORTOKEN, '✌'), EmojiRep(None, 'try')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🎀'), EmojiRep(None, 'not')),
 
-        EmojiRep(tokenize.ERRORTOKEN, '🖨'): EmojiRep(None, 'print'),
-    }
+    (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(None, 'print')),
+]
 
 
 class EmojiMapper:
 
-    emojitopython = dict((key.val, item.val) for key, item in REPLACEMENTS.items())
-    tupletoemoji = dict((item, key.val) for key, item in REPLACEMENTS.items())
-    pythontoemoji = dict((item.val, key.val) for key, item in REPLACEMENTS.items())
+    emojitopython = dict((key.val, item.val) for key, item in REPLACEMENTS)
+    tupletoemoji = dict((item, key.val) for key, item in REPLACEMENTS)
+    pythontoemoji = dict((item.val, key.val) for key, item in REPLACEMENTS)
 
     def __getitem__(self, item):
         # For treating an instance like a dict

@@ -2,12 +2,13 @@ import tokenize
 import hashlib
 import csv
 import unicodedata
+from reversible_emojidict import EmojiMapper
 
 DEBUG = False
 
 EMOJI_NAMES = list(c['Name'] for c in
                    csv.DictReader(
-                       open('./full-emoji-list.tsv'), delimiter='\t')
+                       open('./full-emoji-list.tsv', encoding='utf8'), delimiter='\t')
                    )
 
 
@@ -34,31 +35,7 @@ EMOJI_NAMES = list(c['Name'] for c in
 #  while
 #  with
 
-REPLACEMENTS = {
-    (tokenize.ERRORTOKEN,   '⭐'): '*',
-    (tokenize.ERRORTOKEN, '❔'): 'if',
-    (tokenize.ERRORTOKEN, '⏩'): 'pass',
-    (tokenize.ERRORTOKEN, '🌍'): 'global',
-    (tokenize.ERRORTOKEN, '💔'): 'break',
-    (tokenize.ERRORTOKEN, '👍'): 'True',
-    (tokenize.ERRORTOKEN, '👎'): 'False',
-    (tokenize.ERRORTOKEN, '🇫🇷'): 'yield',
-    (tokenize.ERRORTOKEN, '🚫'): 'None',
-    (tokenize.ERRORTOKEN, '🐑'): 'lambda',
-    (tokenize.ERRORTOKEN, '🏫'): 'class',
-    (tokenize.ERRORTOKEN, '📥'): 'import',
-    (tokenize.ERRORTOKEN, '✌'): 'try',
-    (tokenize.ERRORTOKEN, '🎀'): 'not',
-
-    (tokenize.ERRORTOKEN, '🖨'): 'print', (tokenize.ERRORTOKEN, '📠'): 'print',
-}
-
-REVERSE_REPLACEMENTS = {
-    (bool, 'True') : '👍',
-    (bool, 'False') : '👎',
-    (int, '0'): '0️⃣', 
-    (int, '100'): '💯', 
-}
+REPLACEMENTS = EmojiMapper()
 
 
 def replace_keywords(token_list):
@@ -107,15 +84,15 @@ def replace_emoji(token_list):
     return token_list
 
 
-def output_formatter(arg, p = None, cycle=None):
+def output_formatter(arg, p=None, cycle=None):
     if p:
-        if (type(arg), str(arg)) in REVERSE_REPLACEMENTS:
-            return p.text(REVERSE_REPLACEMENTS[(type(arg), str(arg))])
+        if (type(arg), str(arg)) in REPLACEMENTS:
+            return p.text(REPLACEMENTS[(type(arg), str(arg))])
         else:
             return p.text(str(arg))
     else:
-        if (type(arg), str(arg)) in REVERSE_REPLACEMENTS:
-            return REVERSE_REPLACEMENTS[(type(arg), str(arg))]
+        if (type(arg), str(arg)) in REPLACEMENTS:
+            return REPLACEMENTS[(type(arg), str(arg))]
         else:
             return str(arg)
 
