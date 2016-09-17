@@ -3,7 +3,7 @@
 
 import sys
 import tokenize
-from replace_emoji import replace_emoji
+from snake.replace_emoji import replace_emoji
 
 
 def parse_file(f):
