@@ -32,8 +32,12 @@ def replace_keywords(token_list):
 
 
 def is_emoji(c):
-    return unicodedata.name(c) in EMOJI_NAMES
-
+    try:
+        return unicodedata.name(c) in EMOJI_NAMES
+    # Some kind of blank data was giving me value errors so this didn't work.
+    # So we'll just return false for now and not think too hard about that.
+    except ValueError:
+        return False
 
 def replace_names(token_list):
     '''
