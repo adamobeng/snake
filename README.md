@@ -19,3 +19,10 @@ returns valid Python code which can then be evaled or written to a files.
 
 snake.write_emoji_to_python([input file name], [output file name]) writes the output to the file directly.
 
+
+    
+## ✍💳
+- 🌸:  @Samathy_Barratt
+- 🐻:  @stevenewey
+- 🎹:  @Ducksual
+- 🃏:  @Adam_Obeng
