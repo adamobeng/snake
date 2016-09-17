@@ -1,33 +1,24 @@
 #! /usr/bin/env python
 
 
+import sys
 import tokenize
 from replace_emoji import replace_emoji
-from sys import argv
 
-def parse_file (f):
-    lines = list()
+
+def parse_file(f):
     lines = replace_emoji(tokenize.tokenize(f.readline))
     untokenize = tokenize.untokenize(lines)
-
     return untokenize
 
-try:
-    f = open(argv[1], 'rb')
-except IndexError:
-    print ("Please enter a file to run")
-    exit()
+
+def emoji_to_python(inpath, outpath):
+    with open(inpath, 'rb') as f, open(outpath, 'w', encoding='utf8') as n:
+        n.write(parse_file(f).decode('utf8'))
 
 
-parsed = parse_file(f).decode()
-
-try:
-    n = open(argv[2], 'w')
-except IndexError:
-    print ("Please enter a file to output")
-    exit()
-
-n.write(parsed)
-
-n.close()
-f.close()
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        sys.exit("USAGE: python emoji_to_python.py inputfilepath outputfilepath")
+    else:
+        emoji_to_python(sys.argv[1], sys.argv[2])
