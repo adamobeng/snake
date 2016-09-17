@@ -9,8 +9,11 @@ EMOJIOUT = "examples/test.emj"
 #Converts python into emoji
 snake.python_to_emoji.python_to_emoji(FILENAME,EMOJIOUT)
 
+#converts emoji to python
 parsed_python = snake.emoji_to_python.emoji_to_python(EMOJIOUT)
+
 
 print()
 print(parsed_python)
+
 
