@@ -32,6 +32,7 @@ EmojiRep = namedtuple('EmojiReplacement', ['type', 'val'])
 
 
 REPLACEMENTS_DATA = [
+    # Keywords
     (EmojiRep(tokenize.ERRORTOKEN, '⭐'), EmojiRep(None, '*')),
     (EmojiRep(tokenize.ERRORTOKEN, '❔'), EmojiRep(None, 'if')),
     (EmojiRep(tokenize.ERRORTOKEN, '⏩'), EmojiRep(None, 'pass')),
@@ -51,9 +52,20 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '👇'), EmojiRep(None, 'in')),
     (EmojiRep(tokenize.ERRORTOKEN, '🤘'), EmojiRep(None, 'finally')),
 
+    # Built-in Functions
+    (EmojiRep(tokenize.ERRORTOKEN, '📖'), EmojiRep(type(open), 'open')),
+
     (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(type(print), 'print')),
     (EmojiRep(tokenize.ERRORTOKEN, '⬅'), EmojiRep(None, '=')),
     (EmojiRep(tokenize.ERRORTOKEN, '◀'), EmojiRep(None, '=')),
+
+    # Comparison Operators
+
+    # Class Methods
+    (EmojiRep(tokenize.ERRORTOKEN, '📕'), EmojiRep(type(open), 'close')),
+
+    # Additional Esoteric
+    (EmojiRep(tokenize.ERRORTOKEN, '🐱'), EmojiRep(types.FunctionType, 'cat')),
 ]
 
 
