@@ -50,14 +50,12 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '👩‍👩‍👧‍👦'), EmojiRep(type, 'set')),
     (EmojiRep(tokenize.ERRORTOKEN, '👇'), EmojiRep(None, 'in')),
     (EmojiRep(tokenize.ERRORTOKEN, '🤘'), EmojiRep(None, 'finally')),
-
     (EmojiRep(tokenize.ERRORTOKEN, '🖨'), EmojiRep(type(print), 'print')),
     (EmojiRep(tokenize.ERRORTOKEN, '⬅'), EmojiRep(None, '=')),
-    (EmojiRep(tokenize.ERRORTOKEN, '◀'), EmojiRep(None, '=')),
     (EmojiRep(tokenize.ERRORTOKEN, '🔤'), EmojiRep(type(str), 'str')),
     (EmojiRep(tokenize.ERRORTOKEN, '↔'), EmojiRep(type(range), 'range')),
-    (EmojiRep(tokenize.ERRORTOKEN, '📬'), EmojiRep(None, 'in')),
     (EmojiRep(tokenize.ERRORTOKEN, '➰'), EmojiRep(None, 'and')),
+    (EmojiRep(tokenize.ERRORTOKEN, '💩✍'), EmojiRep(SyntaxError, 'SyntaxError')),
 ]
 
 
