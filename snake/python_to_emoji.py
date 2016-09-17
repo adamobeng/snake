@@ -1,7 +1,4 @@
 import sys
-import os
-import replace_emoji
-from tempfile import mkstemp
 import tokenize
 from snake.reversible_emojidict import EmojiMapper
 
