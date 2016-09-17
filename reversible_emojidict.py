@@ -65,7 +65,7 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '📕'), EmojiRep(type(open), 'close')),
 
     # Additional Esoteric
-    (EmojiRep(tokenize.ERRORTOKEN, '🐱'), EmojiRep(types.FunctionType, 'cat')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🐈'), EmojiRep(types.FunctionType, 'cat')),
 ]
 
 
