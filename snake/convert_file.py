@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
 import tokenize
-from replace_emoji import replace_emoji
 import argparse
 from sys import argv
-import python_to_emoji
+
+from snake.replace_emoji import replace_emoji
+import snake.python_to_emoji as python_to_emoji
 
 try:
     f = open(argv[1], 'rb')

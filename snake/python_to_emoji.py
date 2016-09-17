@@ -1,7 +1,8 @@
-from reversible_emojidict import EmojiMapper
 import sys
-import replace_emoji
 import tokenize
+
+import snake.replace_emoji as replace_emoji
+from snake.reversible_emojidict import EmojiMapper
 
 REPLACEMENTS = EmojiMapper()
 

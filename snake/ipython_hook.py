@@ -1,7 +1,7 @@
 from IPython.core.inputtransformer import StatelessInputTransformer
 from IPython.core.inputtransformer import TokenInputTransformer
 
-from replace_emoji import replace_emoji, output_formatter
+from snake.replace_emoji import replace_emoji, output_formatter
 
 
 @TokenInputTransformer.wrap

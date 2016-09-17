@@ -2,13 +2,15 @@ import tokenize
 import hashlib
 import csv
 import unicodedata
-from reversible_emojidict import EmojiMapper
+import os.path
+
+from snake.reversible_emojidict import EmojiMapper
 
 DEBUG = False
 
 EMOJI_NAMES = list(c['Name'] for c in
                    csv.DictReader(
-                       open('./full-emoji-list.tsv', encoding='utf8'), delimiter='\t')
+                       open(os.path.dirname(__file__) + '/full-emoji-list.tsv', encoding='utf8'), delimiter='\t')
                    )
 
 

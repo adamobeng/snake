@@ -3,15 +3,14 @@
 
 import setuptools
 
-import 🐍
-
-setuptools.setup(name='🐍',
-                 version=🐍 .__version__,
+setuptools.setup(name='snake',
+                 version='0.0.1',
                  description='🐍',
                  url='https://github.com/adamobeng/snake',
                  author='😎',
                  author_email='snake@binaryeagle.com',
-                 packages=['🐍'],
+                 packages=['snake'],
                  zip_safe=False,
                  platforms=['any'],
+                  include_package_data=True,
                  )
