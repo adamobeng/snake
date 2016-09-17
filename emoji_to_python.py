@@ -21,7 +21,12 @@ except IndexError:
 
 parsed = parse_file(f).decode()
 
-n = open("unconverted.py", 'w')
+try:
+    n = open(argv[2], 'w')
+except IndexError:
+    print ("Please enter a file to output")
+    exit()
+
 n.write(parsed)
 
 n.close()

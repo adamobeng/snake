@@ -24,7 +24,12 @@ emojipython = open("tokens.out", 'rb')
 python = tokenize.untokenize(emojified)
 print(python.decode())
 
-out = open("emoji-python.py", 'w')
+try:
+    out = open(argv[2],'w')
+except IndexError:
+    print ("Please enter a file to output")
+    exit()
+
 out.write(str(python.decode()))
 
 
