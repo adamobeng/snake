@@ -65,11 +65,11 @@ REPLACEMENTS_DATA = [
     (EmojiRep(tokenize.ERRORTOKEN, '📕'), EmojiRep(type(open), 'close')),
 
     # Additional Esoteric
-    (EmojiRep(tokenize.ERRORTOKEN, '🐱'), EmojiRep(types.FunctionType, 'cat')),
     (EmojiRep(tokenize.ERRORTOKEN, '🔤'), EmojiRep(type(str), 'str')),
     (EmojiRep(tokenize.ERRORTOKEN, '↔'), EmojiRep(type(range), 'range')),
     (EmojiRep(tokenize.ERRORTOKEN, '➰'), EmojiRep(None, 'and')),
     (EmojiRep(tokenize.ERRORTOKEN, '💩✍'), EmojiRep(SyntaxError, 'SyntaxError')),
+    (EmojiRep(tokenize.ERRORTOKEN, '🐈'), EmojiRep(types.FunctionType, 'cat')),
 ]
 
 
