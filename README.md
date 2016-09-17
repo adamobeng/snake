@@ -9,12 +9,13 @@ This is so ridiculous, don't use it.
 
 Converting python to Emoji:
 ========
-
-Run python_to_emoji.py with the command line args of python the file you want to convert.
-The program outputs emoji_python.py as the converted script wth more emoji fun.
+snake.python_to_emoji.python_to_emoji([input file name]) can be called to convert python into emojipython
 
 Converting from Emoji to Python:
 =======
 
-Running emoji_to_python.py with a emoji-python argument will output a pure Python file (unconverted.py). You can run this file, providing that the origional input was valid python.
+snake.emoji_to_python.emoji_to_python([input file name])
+returns valid Python code which can then be evaled or written to a files.
+
+snake.write_emoji_to_python([input file name], [output file name]) writes the output to the file directly.
 
