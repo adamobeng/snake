@@ -1,11 +1,13 @@
-To load into iPython:
- ```
- %reload_ext ipython_hook
-```
-
 A package to re-write python scripts to emoji and run emojipython files & code.
 This is so ridiculous, don't use it.
 
+
+[PyConUK 2016 Lightning talk video](https://www.youtube.com/watch?t=904&v=gg1bv9XJAek)
+
+## To load into iPython:
+ ```
+ %reload_ext ipython_hook
+```
 
 Converting python to Emoji:
 ========
